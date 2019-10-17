@@ -18,6 +18,9 @@ class likeModel extends HTTP {
     })
   }
 
+  /**
+   * 根据artID, category来具体获取点赞的信息，此信息不能缓存
+   */
   getClassicLikeStatus(artID, category, sCallback) {
     this.request({
       url: 'classic/' + category + '/' + artID + '/favor',

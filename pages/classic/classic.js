@@ -56,7 +56,7 @@ Page({
   _updateClassic: function(nextOrPrevious) {
     let index = this.data.classicDate.index;
     classicApi.getClassic(index, nextOrPrevious, (res) => {
-      // 点赞的数量和状态不可以缓存
+      // 点赞的数量和状态不可以缓存，没更换一起就要重新获取下点赞的信息
       this._getLikeStatus(res.id, res.type);
       this.setData({
         classicDate: res,
