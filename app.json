@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/classic/classic"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "此刻",
+    "backgroundColor": "#ffffff",
+    "enablePullDownRefresh": false
+  },
+  "sitemapLocation": "sitemap67.json",
+  "requiredBackgroundModes":  ["audio"]
+}

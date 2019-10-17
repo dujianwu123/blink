@@ -1,0 +1,22 @@
+.classic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.classic-img {
+  width: 750rpx;
+  height: 500rpx;
+}
+.tag {
+  width: 46rpx;
+  height: 142rpx;
+  position: relative;
+  right: 310rpx;
+  bottom: 58rpx;
+}
+.content {
+  font-size: 36rpx;
+  /* 字少的时候居中，字多的时候换行，此时不能给width设置固定宽度，因为设置固定550了，当就3，4个字的时候是左对齐的，因为我们设置的是flex的居中，是content容器的居中，所以要让content是自适应的宽度，让文字撑起容器，但超过一定宽度又能固定宽度来实现换行， 所以设置为 max-width */
+  /* width: 550rpx; */
+  max-width: 550rpx;
+}

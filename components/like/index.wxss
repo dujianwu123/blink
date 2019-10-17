@@ -1,0 +1,23 @@
+.container {
+  /* 可以自适应宽度，设置成flex默认宽度100% */
+  display: inline-flex;
+  flex-direction: row;
+  /* 解决数字不能完全显示的问题 */
+  padding: 10rpx;
+  width:90rpx;
+}
+
+.container > image {
+  width: 32rpx;
+  height: 28rpx;
+}
+.container > text {
+  /* font-family: "PingFangSC-Thin";  设置到全局了 */
+  font-size: 24rpx;
+  /* 消除文字的上下间距，来使属子往上点 */
+  line-height: 24rpx;
+  color: #bbbbbb;
+  position: relative;
+  bottom: 10rpx;
+  left: 6rpx;
+}

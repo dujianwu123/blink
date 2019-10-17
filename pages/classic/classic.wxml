@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="header">
+    <v-epsoide class="epsoide" index="{{ classicDate.index }}" />
+    <v-like class="like" bind:like="onLike" like="{{ likeStatus }}" count="{{ likeCount }}" />
+  </view>
+  <v-movie hidden="{{classicDate.type != 100}}" img="{{ classicDate.image }}" content="{{ classicDate.content }}" />
+  <v-music wx:if="{{classicDate.type == 200}}" img="{{ classicDate.image }}" content="{{ classicDate.content }}" src="{{ classicDate.url }}" title="{{ classicDate.title }}" />
+  <v-essay hidden="{{classicDate.type != 300}}" img="{{ classicDate.image }}" content="{{ classicDate.content }}" />
+  <v-navi bind:left="onNext" bind:right="onPrevious" title="{{ classicDate.title }}" latest="{{ latest }}" first="{{ first }}"  class="navi" />
+</view>
