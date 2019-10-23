@@ -1,0 +1,14 @@
+var format = function (text) {
+  if (text) {
+    // 因为要找出\\n 而一个\在正则里用两个\\转译 所以是\\\\n
+    var reg = getRegExp('\\\\n', 'g')
+    return text.replace(reg, '\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+  }
+}
+var limit = function (array, length) {
+  return array.slice(0, length)
+}
+module.exports = {
+  format: format,
+  limit: limit
+}
