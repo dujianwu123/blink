@@ -60,7 +60,16 @@ Component({
       }
     },
     onCancel: function () {
+      this.initialize();
       this.triggerEvent('cancel', {}, {})
+    },
+    onDelete: function () {
+      this.initialize();
+      this.setData({
+        loadingCenter:false,
+        searching: false,
+        word: ''
+      })
     },
     onConfirm: function (event) {
       this._showLoadingCenter();
@@ -75,11 +84,6 @@ Component({
           this._hideLoadingCenter();
         });
       }
-    },
-    onDelete: function () {
-      this.setData({
-        searching: false
-      })
     },
     _showResult(word) {
       this.setData({

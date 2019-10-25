@@ -61,7 +61,6 @@
     margin-right: 20rpx;
     padding: 20rpx;
 }
-
 .history {
     width: 690rpx;
     margin: 40rpx 0 20rpx 0;
