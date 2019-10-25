@@ -25,6 +25,7 @@ Component({
     searching: false,
     word: '',
     // loading: false // 加载更多锁，是否正在发生请求，默认是没有发生请求
+    loadingCenter: false
   },
   attached: function () {
     this.setData({
@@ -62,7 +63,7 @@ Component({
       this.triggerEvent('cancel', {}, {})
     },
     onConfirm: function (event) {
-      wx.showLoading();
+      this._showLoadingCenter();
       this.initialize();
       const word = event.detail.value || event.detail.tapText;
       this._showResult(word);
@@ -71,7 +72,7 @@ Component({
           this.setMoreData(res.books);
           this.setTotal(res.total)
           keywordApi.addToHistory(word);
-          wx.hideLoading();
+          this._hideLoadingCenter();
         });
       }
     },
@@ -85,6 +86,16 @@ Component({
         searching: true,
         word: word,// 此处是为了点击后input能马上显示点击的文本
       });
+    },
+    _showLoadingCenter() {
+      this.setData({
+        loadingCenter: true
+      })
+    },
+    _hideLoadingCenter() {
+      this.setData({
+        loadingCenter: false
+      })
     }
   }
 })
