@@ -11,7 +11,7 @@ Component({
   properties: {
     more: {
       type: String,
-      observer: '_load_more'
+      observer: 'loadMore'
     }
   },
 
@@ -40,25 +40,21 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    _load_more: function () {
+    loadMore: function () {
       if (!this.data.word) {
         return
       }
-      if (this.data.loading) {
+      if (this.isLocked()) {
         return;
       }
-      // let length = this.data.dataArray.length; 用行为behaviors接管
       // this.data.loading = true; // wxml不需要更新loading可以这么赋值
       if(this.hasMore()) {
-        this.data.loading = true;
+        this.locked()
         bookApi.search(this.getCurrentStart(), this.data.word).then((res) => {
-          // const tempArray = this.data.dataArray.concat(res.books);  用行为behaviors接管
           this.setMoreData(res.books);
-          this.data.loading = false; 
-          // this.setData({
-          //   dataArray: tempArray,
-          //   loading: false
-          // })  用行为behaviors接管
+          this.unLocked();
+        },()=>{
+          this.unLocked(); // 如果失败或断网了，也需要解锁，要不请求的时候断网，而一会有来网了，如果不在这解锁就会成为死锁了
         })
       }
     },
@@ -67,17 +63,11 @@ Component({
     },
     onConfirm: function (event) {
       wx.showLoading();
+      this.initialize();
       const word = event.detail.value || event.detail.tapText;
-      this.setData({
-        searching: true,
-        dataArray: [],
-        word: word,
-      });
+      this._showResult(word);
       if (word) {
         bookApi.search(0, word).then((res) => {
-          // this.setData({
-          //   dataArray: res.books,
-          // }); 用行为behaviors接管
           this.setMoreData(res.books);
           this.setTotal(res.total)
           keywordApi.addToHistory(word);
@@ -89,6 +79,12 @@ Component({
       this.setData({
         searching: false
       })
+    },
+    _showResult(word) {
+      this.setData({
+        searching: true,
+        word: word,// 此处是为了点击后input能马上显示点击的文本
+      });
     }
   }
 })
