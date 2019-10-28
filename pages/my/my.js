@@ -1,4 +1,7 @@
-// pages/my/my.js
+import {
+  bookModel
+} from '../../models/book.js';
+let bookApi = new bookModel();
 Page({
 
   /**
@@ -6,14 +9,23 @@ Page({
    */
   data: {
     authorized: false,
-    userInfo: null
+    userInfo: null,
+    bookCount: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.userAuthorized()
+    this.userAuthorized();
+    this.getMyBookCount();
+  },
+  getMyBookCount() {
+    bookApi.getMyBookCount().then((res) => {
+      this.setData({
+        bookCount: res.count
+      })
+    })
   },
   userAuthorized() {
     // 获取用户是否授权
@@ -42,6 +54,16 @@ Page({
         authorized: true
       })
     }
+  },
+  onJumpToAbout(e) {
+    wx.navigateTo({
+      url: '/pages/about/about'
+    })
+  },
+  onStudy() {
+    wx.navigateTo({
+      url: '/pages/course/course'
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
