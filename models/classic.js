@@ -35,6 +35,18 @@ class classicModel extends HTTP{
   }
 
   /**
+   * 获取我最资环的期刊
+   */
+  getMyFavor(success) {
+    console.log(success)
+    const params = {
+      url: 'classic/favor',
+      success: success
+    }
+    this.request(params)
+  }
+
+  /**
    * 判断是否是最早一期
    */
   isFirst(index) {
