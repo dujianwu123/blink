@@ -5,10 +5,13 @@ Component({
    */
   properties: {
     like: {
-      type: Boolean
+      type: Boolean // 判断显示什么心的图片
     },
     count: {
       type: Number
+    },
+    readOnly: {
+      type: Boolean //判断是不是只读
     }
   },
 
@@ -26,6 +29,9 @@ Component({
   methods: {
     onLike(event) {
       // 自定义事件
+      if (this.properties.readOnly) { // 如果是只读的就不操作后面了
+        return 
+      }
       let count = this.properties.count
       // like若为true 证明是要由喜欢  --> 不喜欢 , 所以应该减1 反之加1
       count = this.properties.like ? count - 1 : count + 1
