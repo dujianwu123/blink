@@ -60,6 +60,7 @@ Page({
   },
   onGetUserInfo(event) {
     const userInfo = event.detail.userInfo;
+    console.log('userInfo', userInfo)
     if(userInfo) {
       this.setData({
         userInfo,
@@ -79,6 +80,11 @@ Page({
   },
   onJumpToDetail() {
 
-  }
-  
+  },
+  onShareAppMessage() {
+    console.log(111111)
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+  },
 })

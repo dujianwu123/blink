@@ -37,6 +37,7 @@ Page({
       searching: false
     })
   },
+  // 上拉触底加载
   onReachBottom: function() {
     this.setData({
       more: random(16)
